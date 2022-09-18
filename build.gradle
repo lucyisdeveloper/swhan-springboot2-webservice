@@ -23,12 +23,14 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 dependencies {
     // gradle 7버전 이상에서는 compile, testComplie 대신 implementation, testImplementation을 사용해야함
     implementation('org.springframework.boot:spring-boot-starter-web')
+    // gradle 5 이상에서는 다음과 같이..
+    compileOnly('org.projectlombok:lombok:1.18.20')
+    annotationProcessor('org.projectlombok:lombok:1.18.20')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
