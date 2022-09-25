@@ -1,5 +1,5 @@
 buildscript {
-    ext{
+    ext {
         springBootVersion = '2.1.7.RELEASE'
     }
     repositories {
@@ -32,5 +32,10 @@ dependencies {
     compileOnly('org.projectlombok:lombok:1.18.20')
     annotationProcessor('org.projectlombok:lombok:1.18.20')
     testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    //스프링부트용 Spring Data JPA 추상 라이브러리
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
+    //인메모리 관계형 데이터베이스 -> 애플리케이션 재시작때마다 초기화 됨.
+    implementation('com.h2database:h2')
 }
 
