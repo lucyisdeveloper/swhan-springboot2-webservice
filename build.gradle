@@ -37,5 +37,8 @@ dependencies {
     implementation('org.springframework.boot:spring-boot-starter-data-jpa')
     //인메모리 관계형 데이터베이스 -> 애플리케이션 재시작때마다 초기화 됨.
     implementation('com.h2database:h2')
+
+    //머스테치
+    implementation('org.springframework.boot:spring-boot-starter-mustache')
 }
 
