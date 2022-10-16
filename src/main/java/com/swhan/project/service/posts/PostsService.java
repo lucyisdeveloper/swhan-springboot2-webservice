@@ -8,8 +8,8 @@ import com.swhan.project.web.dto.PostsSaveRequestDto;
 import com.swhan.project.web.dto.PostsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 import java.util.List;
 
@@ -38,14 +38,14 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
-    @Transactional
+    @Transactional(readOnly=true)
     public List<PostsListResponseDto> findAllDesc(){
         return postsRepository.findAllDesc().stream().map(PostsListResponseDto::new).collect(Collectors.toList());
     }
 
     @Transactional
     public void delete(Long id){
-        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("핻당 게시글이 없습니다. id="+id));
+        Posts posts = postsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id="+id));
 
         postsRepository.delete(posts);
     }

@@ -2,6 +2,7 @@ package com.swhan.project.web.dto;
 
 import com.swhan.project.domain.posts.Posts;
 import lombok.Getter;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
