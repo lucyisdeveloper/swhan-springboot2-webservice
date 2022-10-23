@@ -52,5 +52,8 @@ dependencies {
 
     //스프링시큐리티 테스트
     testImplementation('org.springframework.security:spring-security-test')
+
+    //MariaDB
+    implementation('org.mariadb.jdbc:mariadb-java-client')
 }
 
