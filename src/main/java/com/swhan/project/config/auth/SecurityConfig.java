@@ -1,4 +1,4 @@
-package config.auth;
+package com.swhan.project.config.auth;
 
 import com.swhan.project.domain.user.Role;
 import lombok.RequiredArgsConstructor;
@@ -13,14 +13,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customOAuth2UserService;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         //h2-console화면을 사용하기 위해 해당 옵션들을 disalbe함
         http.csrf().disable().headers().frameOptions().disable()
                 //authorizeRequests() : URL별 권한 관리를 설정하는 옵션의 시작점 -> 이게 있어야만 antMatchers옵션 사용가능
                 .and().authorizeRequests()
                 //antMatchers() : 권한관리 대상을 지정하는 옵션 -> HTTP,URL메소드별로 관리가 가능
                 // / :  permitAll() 옵션을 통해 전체 열람 권한을 줌
-                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
                 // /api/v1/** : USER권한을 가진사람만 가능함
                 .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                 //anyRequst() : 설정된 값들 이외 나머지 URL을 나타냄

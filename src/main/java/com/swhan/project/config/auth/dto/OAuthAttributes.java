@@ -1,4 +1,4 @@
-package config.auth.dto;
+package com.swhan.project.config.auth.dto;
 
 import com.swhan.project.domain.user.Role;
 import com.swhan.project.domain.user.User;

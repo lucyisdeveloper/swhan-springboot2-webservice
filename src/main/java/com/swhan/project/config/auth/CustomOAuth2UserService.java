@@ -1,9 +1,9 @@
-package config.auth;
+package com.swhan.project.config.auth;
 
+import com.swhan.project.config.auth.dto.OAuthAttributes;
+import com.swhan.project.config.auth.dto.SessionUser;
 import com.swhan.project.domain.user.User;
 import com.swhan.project.domain.user.UserRepository;
-import config.auth.dto.OAuthAttributes;
-import config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
