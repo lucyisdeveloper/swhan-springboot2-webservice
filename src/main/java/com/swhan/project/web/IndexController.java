@@ -1,8 +1,9 @@
 package com.swhan.project.web;
 
+import com.swhan.project.config.auth.LoginUser;
+import com.swhan.project.config.auth.dto.SessionUser;
 import com.swhan.project.service.posts.PostsService;
 import com.swhan.project.web.dto.PostsResponseDto;
-import config.auth.dto.SessionUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
@@ -17,12 +18,14 @@ import javax.servlet.http.HttpSession;
 public class IndexController {
 
     private final PostsService postsService;
-    private final HttpSession httpSession;
+    //private final HttpSession httpSession;
 
     @GetMapping("/") //머스테치 스타터로 인해 경로 및 확장자는 자동 지정됨 -> 경로의 경우 : src/main/resources/templates //확장자의 경우 : .mustache
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        //어노테이션 @LoginUser로 수정
+        //SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             model.addAttribute("userName", user.getName()); //로그인 성공 시, 세션에 SessionUser를 저장!
