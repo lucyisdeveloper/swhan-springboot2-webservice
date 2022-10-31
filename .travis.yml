@@ -11,13 +11,13 @@ before_install:
 
 #Travis CI 서버의 home
 cache: #Gradle을 통해 의존성을 받게 되면 해당 디렉토리에 캐시해서
-       #같은 의존성은 다음 배포 때 부터 다시 받지 않도록 설정!
+  #같은 의존성은 다음 배포 때 부터 다시 받지 않도록 설정!
   directories:
     - '$HOME/.m2/repository'
     - '$HOME/.gradle'
 
 script: "./gradlew clean build" #master브랜치에 푸시되었을 때 실행되는 명령어로
-                                #gradlew를 통해 clean & build를 수행
+#gradlew를 통해 clean & build를 수행
 
 #CI 실행 완료 시, 메일로 알람
 notifications: #Travis CI 실행 완료시, 자동으로 알람이 가도록 설정
