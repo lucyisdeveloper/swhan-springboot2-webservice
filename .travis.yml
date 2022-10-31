@@ -17,10 +17,32 @@ cache: #Gradle을 통해 의존성을 받게 되면 해당 디렉토리에 캐�
     - '$HOME/.gradle'
 
 script: "./gradlew clean build" #master브랜치에 푸시되었을 때 실행되는 명령어로
-#gradlew를 통해 clean & build를 수행
+                                #gradlew를 통해 clean & build를 수행
 
-#CI 실행 완료 시, 메일로 알람
+#deploy명령어가 실행되기 전에 수행 -> codeDeploy는 jar파일 인색 못해서 zip으로!
+before_deploy:
+  #현재위치의 모든 파일을 swhan-springboot2-webservice로 압축!!
+  - zip -r swhan-springboot2-webservice *
+  #deploy 디렉토리를 Travis CI가 실행 중인 위치에 생성
+  - mkdir -p deploy
+  #swhan-springboot2-webservice.zip -> deploy/swhan-springboot2-webservice.zip로 이동!
+  - mv swhan-springboot2-webservice.zip deploy/swhan-springboot2-webservice.zip
+
+#S3로 파일 업로드 또는 CodeDeploy로 배포 등
+#외부 서비스와 연동될 행위를 선언!!
+deploy:
+  -provicer: s3
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  bucket: swhan-springboot-build #S3 버킷
+  region: ap-northeast-2
+  skip_cleanup: true
+  acl: private #파일 접근 권한을 private 로~
+  local_dir: deploy #before-deploy에서 생성한 디렉토리 -> 해당위치의 파일들만 S3로 전송!!
+  wait-until-deployed: true
+
+  #CI 실행 완료 시, 메일로 알람
 notifications: #Travis CI 실행 완료시, 자동으로 알람이 가도록 설정
-  email:
-    recipients:
-      - starwing9997@gmail.com
+    email:
+      recipients:
+        - starwing9997@gmail.com
