@@ -31,7 +31,7 @@ before_deploy:
 #S3로 파일 업로드 또는 CodeDeploy로 배포 등
 #외부 서비스와 연동될 행위를 선언!!
 deploy:
-  -provicer: s3
+  -provider: s3
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key: $AWS_SECRET_KEY
   bucket: swhan-springboot-build #S3 버킷
